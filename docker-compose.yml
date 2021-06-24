@@ -1,0 +1,18 @@
+version: '2.1'
+volumes:
+    data: {}
+services:
+    openvino:
+        build:
+            context: openvino
+            dockerfile: Dockerfile.template
+        environment:
+            - UDEV=1
+        privileged: true
+        network_mode: host
+        volumes:
+            - "data:/app/data"
+        devices:
+            - "/dev:/dev"
+        labels:
+            io.balena.features.dbus: '1'
